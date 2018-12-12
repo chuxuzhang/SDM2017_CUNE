@@ -10,7 +10,9 @@ p@1: UserMaxId (maximum user id); p@2: ItemMaxId (maximum item id); p@3: FilePat
 ratings_train.csv: training data;  ratings_test.csv: test data; user_randWalkSeq.txt: user sequences file
 
 #example on CiaoDVD dataset
+
 g++ -o random_walk random_walk.cpp
+
 ./random_walk 17615 16121 Data/ratings_new.csv 20 20
 
 <2> step-2: run net_embed.py to generate user embeddings (need gensim api: https://radimrehurek.com/gensim/)
@@ -22,6 +24,7 @@ p@1: WalkLen (random walk length); p@2: DimSize (dimension of embedding); p@3: W
 user_embedding.csv: user embeddings file
 
 #example on CiaoDVD dataset
+
 python net_embed.py 20 20 5
 
 <3> step-3: run CUNE-MF.cpp to generate top-k neighbors, train model as well as evaluate model's performance 
@@ -33,5 +36,7 @@ p@1: UserMaxId (maximum user id); p@2: ItemMaxId (maximum item id); p@3: LearnRa
 evalution results: MAE and RMSE
 
 #example on CiaoDVD dataset
+
 g++ -o CUNE-MF CUNE-MF.cpp
+
 ./CUNE-MF 17615 16121 0.001 50 20 20 0.1 0.1
